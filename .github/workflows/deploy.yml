@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        users: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Send webhook to AWS Lambda
         run: |
           echo "Send webhook to Lambda ..."
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"repository\":\"${{ github.repository }}\", \"ref\":\"{{ github.ref }}\",\"pusher\":\"{{ github.actor }}\"}" \
-            ${{ secret.LAMBDA_URL }}
+            -d "{\"repository\":\"${{ github.repository }}\", \"ref\":\"${{ github.ref }}\",\"pusher\":\"${{ github.actor }}\"}" \
+            "${{ secrets.LAMBDA_URL }}"
