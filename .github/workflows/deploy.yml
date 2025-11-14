@@ -13,4 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      
+      - name: Send GET request to server
+        env:
+          SERVER_URL: ${{ secrets.SERVER_ADDRESS }} 
+          
+        run: |
+          echo "Sending GET request to the /trigger endpoint..."
+          
+          # curl 명령어를 사용하여 서버의 /trigger 엔드포인트로 요청을 보냅니다.
+          # ${SERVER_URL} 부분은 실제 서버의 IP 주소와 포트(예: 43.201.34.161:8888)여야 합니다.
+          curl -X GET ${SERVER_URL}/trigger
